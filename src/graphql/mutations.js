@@ -1,6 +1,93 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createUser = /* GraphQL */ `
+  mutation CreateUser(
+    $input: CreateUserInput!
+    $condition: ModelUserConditionInput
+  ) {
+    createUser(input: $input, condition: $condition) {
+      id
+      userId
+      username
+      blogs {
+        nextToken
+        startedAt
+        __typename
+      }
+      comments {
+        nextToken
+        startedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
+      __typename
+    }
+  }
+`;
+export const updateUser = /* GraphQL */ `
+  mutation UpdateUser(
+    $input: UpdateUserInput!
+    $condition: ModelUserConditionInput
+  ) {
+    updateUser(input: $input, condition: $condition) {
+      id
+      userId
+      username
+      blogs {
+        nextToken
+        startedAt
+        __typename
+      }
+      comments {
+        nextToken
+        startedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
+      __typename
+    }
+  }
+`;
+export const deleteUser = /* GraphQL */ `
+  mutation DeleteUser(
+    $input: DeleteUserInput!
+    $condition: ModelUserConditionInput
+  ) {
+    deleteUser(input: $input, condition: $condition) {
+      id
+      userId
+      username
+      blogs {
+        nextToken
+        startedAt
+        __typename
+      }
+      comments {
+        nextToken
+        startedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
+      __typename
+    }
+  }
+`;
 export const createBlog = /* GraphQL */ `
   mutation CreateBlog(
     $input: CreateBlogInput!
@@ -9,6 +96,18 @@ export const createBlog = /* GraphQL */ `
     createBlog(input: $input, condition: $condition) {
       id
       name
+      user {
+        id
+        userId
+        username
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        owner
+        __typename
+      }
       posts {
         nextToken
         startedAt
@@ -19,6 +118,8 @@ export const createBlog = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      userBlogsId
+      owner
       __typename
     }
   }
@@ -31,6 +132,18 @@ export const updateBlog = /* GraphQL */ `
     updateBlog(input: $input, condition: $condition) {
       id
       name
+      user {
+        id
+        userId
+        username
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        owner
+        __typename
+      }
       posts {
         nextToken
         startedAt
@@ -41,6 +154,8 @@ export const updateBlog = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      userBlogsId
+      owner
       __typename
     }
   }
@@ -53,6 +168,18 @@ export const deleteBlog = /* GraphQL */ `
     deleteBlog(input: $input, condition: $condition) {
       id
       name
+      user {
+        id
+        userId
+        username
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        owner
+        __typename
+      }
       posts {
         nextToken
         startedAt
@@ -63,6 +190,8 @@ export const deleteBlog = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      userBlogsId
+      owner
       __typename
     }
   }
@@ -83,6 +212,8 @@ export const createPost = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        userBlogsId
+        owner
         __typename
       }
       comments {
@@ -96,6 +227,7 @@ export const createPost = /* GraphQL */ `
       _deleted
       _lastChangedAt
       blogPostsId
+      owner
       __typename
     }
   }
@@ -116,6 +248,8 @@ export const updatePost = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        userBlogsId
+        owner
         __typename
       }
       comments {
@@ -129,6 +263,7 @@ export const updatePost = /* GraphQL */ `
       _deleted
       _lastChangedAt
       blogPostsId
+      owner
       __typename
     }
   }
@@ -149,6 +284,8 @@ export const deletePost = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        userBlogsId
+        owner
         __typename
       }
       comments {
@@ -162,6 +299,7 @@ export const deletePost = /* GraphQL */ `
       _deleted
       _lastChangedAt
       blogPostsId
+      owner
       __typename
     }
   }
@@ -173,6 +311,18 @@ export const createComment = /* GraphQL */ `
   ) {
     createComment(input: $input, condition: $condition) {
       id
+      user {
+        id
+        userId
+        username
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        owner
+        __typename
+      }
       post {
         id
         title
@@ -182,6 +332,7 @@ export const createComment = /* GraphQL */ `
         _deleted
         _lastChangedAt
         blogPostsId
+        owner
         __typename
       }
       content
@@ -190,7 +341,9 @@ export const createComment = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      userCommentsId
       postCommentsId
+      owner
       __typename
     }
   }
@@ -202,6 +355,18 @@ export const updateComment = /* GraphQL */ `
   ) {
     updateComment(input: $input, condition: $condition) {
       id
+      user {
+        id
+        userId
+        username
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        owner
+        __typename
+      }
       post {
         id
         title
@@ -211,6 +376,7 @@ export const updateComment = /* GraphQL */ `
         _deleted
         _lastChangedAt
         blogPostsId
+        owner
         __typename
       }
       content
@@ -219,7 +385,9 @@ export const updateComment = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      userCommentsId
       postCommentsId
+      owner
       __typename
     }
   }
@@ -231,6 +399,18 @@ export const deleteComment = /* GraphQL */ `
   ) {
     deleteComment(input: $input, condition: $condition) {
       id
+      user {
+        id
+        userId
+        username
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        owner
+        __typename
+      }
       post {
         id
         title
@@ -240,6 +420,7 @@ export const deleteComment = /* GraphQL */ `
         _deleted
         _lastChangedAt
         blogPostsId
+        owner
         __typename
       }
       content
@@ -248,7 +429,9 @@ export const deleteComment = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      userCommentsId
       postCommentsId
+      owner
       __typename
     }
   }

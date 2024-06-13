@@ -1,11 +1,105 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getUser = /* GraphQL */ `
+  query GetUser($id: ID!) {
+    getUser(id: $id) {
+      id
+      userId
+      username
+      blogs {
+        nextToken
+        startedAt
+        __typename
+      }
+      comments {
+        nextToken
+        startedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
+      __typename
+    }
+  }
+`;
+export const listUsers = /* GraphQL */ `
+  query ListUsers(
+    $filter: ModelUserFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        userId
+        username
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        owner
+        __typename
+      }
+      nextToken
+      startedAt
+      __typename
+    }
+  }
+`;
+export const syncUsers = /* GraphQL */ `
+  query SyncUsers(
+    $filter: ModelUserFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncUsers(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        userId
+        username
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        owner
+        __typename
+      }
+      nextToken
+      startedAt
+      __typename
+    }
+  }
+`;
 export const getBlog = /* GraphQL */ `
   query GetBlog($id: ID!) {
     getBlog(id: $id) {
       id
       name
+      user {
+        id
+        userId
+        username
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        owner
+        __typename
+      }
       posts {
         nextToken
         startedAt
@@ -16,6 +110,8 @@ export const getBlog = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      userBlogsId
+      owner
       __typename
     }
   }
@@ -35,6 +131,8 @@ export const listBlogs = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        userBlogsId
+        owner
         __typename
       }
       nextToken
@@ -64,6 +162,8 @@ export const syncBlogs = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        userBlogsId
+        owner
         __typename
       }
       nextToken
@@ -85,6 +185,8 @@ export const getPost = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        userBlogsId
+        owner
         __typename
       }
       comments {
@@ -98,6 +200,7 @@ export const getPost = /* GraphQL */ `
       _deleted
       _lastChangedAt
       blogPostsId
+      owner
       __typename
     }
   }
@@ -118,6 +221,7 @@ export const listPosts = /* GraphQL */ `
         _deleted
         _lastChangedAt
         blogPostsId
+        owner
         __typename
       }
       nextToken
@@ -148,6 +252,7 @@ export const syncPosts = /* GraphQL */ `
         _deleted
         _lastChangedAt
         blogPostsId
+        owner
         __typename
       }
       nextToken
@@ -160,6 +265,18 @@ export const getComment = /* GraphQL */ `
   query GetComment($id: ID!) {
     getComment(id: $id) {
       id
+      user {
+        id
+        userId
+        username
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        owner
+        __typename
+      }
       post {
         id
         title
@@ -169,6 +286,7 @@ export const getComment = /* GraphQL */ `
         _deleted
         _lastChangedAt
         blogPostsId
+        owner
         __typename
       }
       content
@@ -177,7 +295,9 @@ export const getComment = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      userCommentsId
       postCommentsId
+      owner
       __typename
     }
   }
@@ -197,7 +317,9 @@ export const listComments = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        userCommentsId
         postCommentsId
+        owner
         __typename
       }
       nextToken
@@ -227,7 +349,9 @@ export const syncComments = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        userCommentsId
         postCommentsId
+        owner
         __typename
       }
       nextToken

@@ -6,6 +6,40 @@ import { LazyLoading, LazyLoadingDisabled, AsyncCollection, AsyncItem } from "@a
 
 
 
+type EagerUser = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<User, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly userId: string;
+  readonly username: string;
+  readonly blogs?: (Blog | null)[] | null;
+  readonly comments?: (Comment | null)[] | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+type LazyUser = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<User, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly userId: string;
+  readonly username: string;
+  readonly blogs: AsyncCollection<Blog>;
+  readonly comments: AsyncCollection<Comment>;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type User = LazyLoading extends LazyLoadingDisabled ? EagerUser : LazyUser
+
+export declare const User: (new (init: ModelInit<User>) => User) & {
+  copyOf(source: User, mutator: (draft: MutableModel<User>) => MutableModel<User> | void): User;
+}
+
 type EagerBlog = {
   readonly [__modelMeta__]: {
     identifier: ManagedIdentifier<Blog, 'id'>;
@@ -13,9 +47,11 @@ type EagerBlog = {
   };
   readonly id: string;
   readonly name: string;
+  readonly user?: User | null;
   readonly posts?: (Post | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
+  readonly userBlogsId?: string | null;
 }
 
 type LazyBlog = {
@@ -25,9 +61,11 @@ type LazyBlog = {
   };
   readonly id: string;
   readonly name: string;
+  readonly user: AsyncItem<User | undefined>;
   readonly posts: AsyncCollection<Post>;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
+  readonly userBlogsId?: string | null;
 }
 
 export declare type Blog = LazyLoading extends LazyLoadingDisabled ? EagerBlog : LazyBlog
@@ -76,10 +114,12 @@ type EagerComment = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
+  readonly user?: User | null;
   readonly post?: Post | null;
   readonly content: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
+  readonly userCommentsId?: string | null;
   readonly postCommentsId?: string | null;
 }
 
@@ -89,10 +129,12 @@ type LazyComment = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
+  readonly user: AsyncItem<User | undefined>;
   readonly post: AsyncItem<Post | undefined>;
   readonly content: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
+  readonly userCommentsId?: string | null;
   readonly postCommentsId?: string | null;
 }
 
