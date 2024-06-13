@@ -1,27 +1,61 @@
-import {useEffect, useState} from "react";
-import {User} from "../models";
-import { AuthUser } from '@aws-amplify/auth';
+import React, {useEffect, useState} from "react";
+import {Blog, User} from "../models";
 import { DataStore } from "@aws-amplify/datastore";
+import BlogPosts from "./BlogPosts";
 
 interface Props {
-    currentUser: AuthUser;
+    userProfile: User;
 }
 
-const UserBlogPosts = ({currentUser}: Props) => {
-    const [user, setUser] = useState<User | null>(null);
+const UserBlogPosts = ({userProfile}: Props) => {
+    const [name, setName] = useState("");
+    const [blogs, setBlogs] = useState<Blog[]>([]);
 
     useEffect(() => {
-        const loadUsers = async () => {
-            const users = await DataStore.query(User, (u: any) => u.userId.contains(currentUser.username));
-            console.log(users);
-            setUser(users[0]);
+        const loadBlogs = async () => {
+            const blogs = await userProfile.blogs.toArray();
+            setBlogs(blogs);
         }
 
-        loadUsers();
+        loadBlogs();
     }, []);
 
+    const handleNameChange = (value: string) => {
+        setName(value);
+    };
+
+    const createBlog = async () => {
+        const newBlog = await DataStore.save(new Blog({
+            name,
+            userBlogsId: userProfile.id
+        }));
+
+        setBlogs([...blogs, newBlog]);
+    }
+
+
+    // TODO: Add isLoading everywhere
     return (
-        <div>UserBlogPosts</div>
+        <>
+            <h1>Your Blogs</h1>
+            <div>
+                <input
+                    placeholder={"Blog Name"}
+                    type="text"
+                    value={name}
+                    onChange={(e) => handleNameChange(e.target.value)}
+                />
+                <button onClick={() => createBlog()}>Create Blog</button>
+            </div>
+            {
+                blogs.map((blog) => (
+                    <div key={blog.id}>
+                        <h3>{blog.name}</h3>
+                        <BlogPosts blog={blog} />
+                    </div>
+                ))
+            }
+        </>
     )
 }
 
