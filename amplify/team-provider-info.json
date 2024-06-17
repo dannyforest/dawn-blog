@@ -17,6 +17,30 @@
       },
       "auth": {
         "blog423b1912": {}
+      },
+      "function": {
+        "blogaudrey": {}
+      }
+    }
+  },
+  "audrey": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-blog-audrey-3c591-authRole",
+      "UnauthRoleArn": "arn:aws:iam::381492272245:role/amplify-blog-audrey-3c591-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::381492272245:role/amplify-blog-audrey-3c591-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-blog-audrey-3c591-deployment",
+      "UnauthRoleName": "amplify-blog-audrey-3c591-unauthRole",
+      "StackName": "amplify-blog-audrey-3c591",
+      "StackId": "arn:aws:cloudformation:us-east-1:381492272245:stack/amplify-blog-audrey-3c591/cbb4b730-2cac-11ef-95d6-12e0a9a2bbeb",
+      "AmplifyAppId": "d1czxnma9s5fyn"
+    },
+    "categories": {
+      "auth": {
+        "blog423b1912": {}
+      },
+      "function": {
+        "blogaudrey": {}
       }
     }
   }
